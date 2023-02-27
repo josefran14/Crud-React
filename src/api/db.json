@@ -1,0 +1,32 @@
+{
+    "usuarios":[
+        {
+            "id":"1",
+            "name":"kenier",
+            "lastName":"fenanedez",
+            "gender":"male",
+            "email":"kenier@spartandevs.com"
+        },
+        {
+            "id":"2",
+            "name":"francisco",
+            "lastName":"savedra",
+            "gender":"male",
+            "email":"francico@spartandevs.com"
+        },
+        {
+            "id":"3",
+            "name":"oliver",
+            "lastName":"prada",
+            "gender":"male",
+            "email":"oliver@spartandevs.com"
+        },
+        {
+            "id":"4",
+            "name":"josue",
+            "lastName":"quevedo",
+            "gender":"male",
+            "email":"josue@spartandevs.com"
+        }
+    ]
+}
