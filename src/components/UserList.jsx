@@ -1,22 +1,41 @@
 import { Visibility } from "@mui/icons-material";
-import { Box, Button, TableCell, TableRow } from "@mui/material";
-import { Modal } from "./Modal";
+import { Box, Button, Modal, TableCell, TableRow } from "@mui/material";
+import { useState } from "react";
+import { FormAdd } from "./FormAdd";
+//import { Modal } from "./Modal";
 
 
 export const UserList = ({ users, setModal, modal, uniqueData, setUniqueData, open, setOpen}) => {
 
+  const style = {
+      position: 'absolute',
+      top: '50%',
+      left: '50%',
+      transform: 'translate(-50%, -50%)',
+      width: 400,
+      bgcolor: 'background.paper',
+      border: '2px solid #000',
+      boxShadow: 24,
+      pt: 2,
+      px: 4,
+      pb: 3,
+    };
+
+    const [openModal, setOpenModal] = useState(false);
+  
    const searchById = (id) =>{
      //console.log("Ojito", id)
-     setModal(!modal)
-     let result = users.filter((user) => user.id === id)
+     let result = users.find((user) => user.id === id)
       setUniqueData(result)
       setOpen(true)
       console.log('filter', result)
-      console.log('open', open)
+      console.log("unique", uniqueData)
     }
-
-   const handleEdit = (id) =>{
+    
+    const handleEdit = (id) =>{
+      searchById(id)
     console.log("Edit", id)
+    setOpenModal(true)
    }
 
    const handleDelete = (id) =>{
@@ -78,7 +97,17 @@ export const UserList = ({ users, setModal, modal, uniqueData, setUniqueData, op
           </TableCell>
         </TableRow>
       ))}
-      
+  
+      <Modal
+        open={openModal}
+        aria-labelledby="parent-modal-title"
+        aria-describedby="parent-modal-description"
+      >
+        <Box sx={{ ...style, width: 400 }}>
+          <FormAdd users={users} openMOdal={openModal} setOpenModal={setOpenModal} uniqueData={uniqueData}/>
+        </Box>
+      </Modal>
     </>
   );
 };
+

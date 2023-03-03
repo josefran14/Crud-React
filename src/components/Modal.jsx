@@ -1,9 +1,9 @@
-import { UserCard } from "./UserCard.jsx"
+// import { UserCard } from "./UserCard.jsx"
 
-export const Modal = () => {
-  return (
-   <>
-      <UserCard/>
-   </>
-  )
-}
+// export const Modal = () => {
+//   return (
+//    <>
+//       <UserCard/>
+//    </>
+//   )
+// }

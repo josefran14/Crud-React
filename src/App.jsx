@@ -10,7 +10,7 @@ export const App = () => {
 
     const [modal, setModal] = useState(false)
 
-    const [uniqueData, setUniqueData] = useState([])
+    const [uniqueData, setUniqueData] = useState({})
 
     const [open, setOpen] = useState(false);
 
@@ -37,7 +37,7 @@ export const App = () => {
     {/* {
     modal 
   } */}
-     <UserModal users={data} uniqueData={uniqueData}/>
+      <UserModal users={data} uniqueData={uniqueData}/> 
     <hr />
 
     <TableUser users={data} setModal={setModal} modal={modal} uniqueData={uniqueData} setUniqueData={setUniqueData} open={open} setOpen={setOpen}/>
