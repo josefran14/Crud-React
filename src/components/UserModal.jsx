@@ -37,7 +37,7 @@ export const UserModal = ({ users, uniqueData }) => {
         aria-describedby="parent-modal-description"
       >
         <Box sx={{ ...style, width: 400 }}>
-          <FormAdd users={users}/>
+          <FormAdd users={users} open={open} setOpen={setOpen}/>
         </Box>
       </Modal>
     </>

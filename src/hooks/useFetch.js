@@ -18,6 +18,7 @@
 
 
 import { useEffect, useState } from "react"
+import axios from "axios"
 
 
 
@@ -30,13 +31,14 @@ export const useFetch = (url) => {
   
   const getFetch = async() =>{
 
-      const resp = await fetch(url)
-      const data = await resp.json()
+     await axios.get(url)
+     .then(response=>{
+       setState({
+         data: response.data,
+         isLoading: false
+       })
+     })
 
-      setState({
-        data: data,
-        isLoading: false
-      })
   }
 
   useEffect(() =>{

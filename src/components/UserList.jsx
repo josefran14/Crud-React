@@ -1,5 +1,6 @@
 import { Visibility } from "@mui/icons-material";
 import { Box, Button, Modal, TableCell, TableRow } from "@mui/material";
+import axios from "axios";
 import { useState } from "react";
 import { FormAdd } from "./FormAdd";
 //import { Modal } from "./Modal";
@@ -39,7 +40,8 @@ export const UserList = ({ users, setModal, modal, uniqueData, setUniqueData, op
    }
 
    const handleDelete = (id) =>{
-    console.log("Delete", id);
+    // let userDeleteById = users.filter((item) => item.id !== id)
+     axios.delete(`http://localhost:5000/usuarios/${id}`)
    }
 
   return (
