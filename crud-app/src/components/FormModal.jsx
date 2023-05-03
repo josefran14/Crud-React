@@ -1,6 +1,5 @@
 import { Box, Button, Modal, TextField, Typography } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
-import { useState } from "react";
 
 const style = {
   position: "absolute",
@@ -14,15 +13,7 @@ const style = {
   p: 4,
 };
 
-export const FormModal = () => {
-  const [open, setOpen] = useState(false);
-
-  const handleOpen = () => {
-    setOpen(true);
-  };
-  const handleClose = () => {
-    setOpen(false);
-  };
+export const FormModal = ({handleOpen, open, handleClose, handleChange, handleSubmit, newUser}) => {
 
   return (
     <>
@@ -42,7 +33,7 @@ export const FormModal = () => {
               <CloseIcon />{" "}
             </Button>
           </Box>
-          <form>
+          <form onSubmit={handleSubmit}>
             <Box
               sx={{
                 width: "100%",
@@ -52,11 +43,44 @@ export const FormModal = () => {
                 gap: "15px",
               }}
             >
-              <TextField sx={{width: "70%"}} type="text" placeholder="Ingrese su nombre" />
-              <TextField sx={{width: "70%"}} type="email" placeholder="Ingrese su Email" />
-              <TextField sx={{width: "70%"}} type="text" placeholder="Genero" />
-              <TextField sx={{width: "70%"}} type="text" placeholder="Username" />
-              <TextField sx={{width: "70%"}} type="text" placeholder="Website" />
+              <TextField
+                sx={{ width: "70%" }}
+                onChange={handleChange}
+                name="name"
+                type="text"
+                placeholder="Ingrese su nombre"
+              />
+              <TextField
+                sx={{ width: "70%" }}
+                onChange={handleChange}
+                name="email"
+                type="email"
+                placeholder="Ingrese su Email"
+              />
+              <TextField
+                sx={{ width: "70%" }}
+                onChange={handleChange}
+                name="city"
+                type="text"
+                placeholder="Genero"
+              />
+              <TextField
+                sx={{ width: "70%" }}
+                onChange={handleChange}
+                name="username"
+                type="text"
+                placeholder="Username"
+              />
+              <TextField
+                sx={{ width: "70%" }}
+                onChange={handleChange}
+                name="website"
+                type="text"
+                placeholder="Website"
+              />
+              <Button onClick={handleSubmit} variant="contained" color="primary">
+                Add
+              </Button>
             </Box>
           </form>
         </Box>

@@ -1,7 +1,7 @@
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material";
 import { OptionsButtons } from "./OptionsButtons";
 
-export const TableUsers = ({users}) => {
+export const TableUsers = ({users, handleDelete}) => {
   return (
     <>
       <TableContainer sx={{  width: "100%" }}>
@@ -34,7 +34,7 @@ export const TableUsers = ({users}) => {
                 <TableCell align="right">{username}</TableCell>
                 <TableCell align="right">{website}</TableCell>
                 <TableCell align="right">
-                    <OptionsButtons/>
+                    <OptionsButtons id={id} handleDelete={handleDelete}/>
                 </TableCell>
                </TableRow> 
              ))} 
