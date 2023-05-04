@@ -1,15 +1,26 @@
 import { Typography } from "@mui/material";
-import { useEffect, useState } from "react";
-import { getAllUsers } from "../api/getAllUsers";
 import { useUsers } from "../hooks/useUsers";
 import { FormModal } from "./FormModal";
 import { TableUsers } from "./TableUsers";
+import { UserModal } from "./UserModal";
 
 export const CrudApp = () => {
+  const {
+    handleChange,
+    handleSubmit,
+    handleClose,
+    handleOpen,
+    open,
+    newUser,
+    handleDelete,
+    openModalView,
+    handleCloseModalView,
+    getUsersDetails,
+    users,
+    specificUser,
+  } = useUsers();
 
-  const { handleChange, handleSubmit, handleClose, handleOpen, open, newUser, handleDelete } = useUsers();
-
-  const [users, setUsers] = useState([]);
+  /* const [users, setUsers] = useState([]);
 
   const getUsers = async () => {
     const allUsers = await getAllUsers();
@@ -18,7 +29,7 @@ export const CrudApp = () => {
 
   useEffect(() => {
     getUsers();
-  }, [users]);
+  }, [users]); */
 
   return (
     <>
@@ -31,7 +42,16 @@ export const CrudApp = () => {
         open={open}
         newUser={newUser}
       />
-      <TableUsers users={users} handleDelete={handleDelete} />
+      <UserModal
+        openModalView={openModalView}
+        handleCloseModalView={handleCloseModalView}
+        specificUser={specificUser}
+      />
+      <TableUsers
+        users={users}
+        handleDelete={handleDelete}
+        getUsersDetails={getUsersDetails}
+      />
     </>
   );
 };

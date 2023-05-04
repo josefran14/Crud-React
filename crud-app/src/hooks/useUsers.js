@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { getAllUsers } from "../api/getAllUsers";
 import axios from "axios";
 import { v4 as uuidv4 } from 'uuid';
 
@@ -6,7 +7,22 @@ export const useUsers = () => {
 
     const [open, setOpen] = useState(false);
 
+    const [openModalView, setOpenModalView] = useState(false);
+
     const [newUser, setNewUser] = useState({});
+
+    const [specificUser, setSpecificUser] = useState([])
+
+    const [users, setUsers] = useState([]);
+
+    const getUsers = async () => {
+        const allUsers = await getAllUsers();
+        setUsers(allUsers);
+    };
+
+    useEffect(() => {
+        getUsers();
+    }, [users]);
 
     const handleOpen = () => {
         setOpen(true);
@@ -14,6 +30,14 @@ export const useUsers = () => {
 
     const handleClose = () => {
         setOpen(false);
+    };
+
+    const handleOpenModalView = () => {
+        setOpenModalView(true);
+      };
+
+    const handleCloseModalView = () => {
+        setOpenModalView(false);
     };
 
     const handleChange = (event) => {
@@ -33,9 +57,19 @@ export const useUsers = () => {
     };
 
     const handleDelete = (id) =>{
-        console.log("id usuario", id)
         axios.delete(`https://fake-api-spartan.herokuapp.com/users/${id}`)
     }
+
+    const getUsersDetails = (id) =>{
+        let usuario = users.filter((user) => user.id === id)
+        setSpecificUser(usuario)
+        handleOpenModalView()
+    }
+
+    useEffect(() => {
+      getUsersDetails
+    }, [specificUser])
+    
 
     return{
         handleChange,
@@ -44,6 +78,12 @@ export const useUsers = () => {
         handleClose,
         handleOpen,
         newUser,
-        handleDelete
+        handleDelete,
+        openModalView,
+        handleOpenModalView,
+        handleCloseModalView,
+        getUsersDetails,
+        users,
+        specificUser
     } 
 };
