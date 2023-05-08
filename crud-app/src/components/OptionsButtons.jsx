@@ -5,6 +5,7 @@ export const OptionsButtons = ({
   handleDelete,
   getUsersDetails,
   handleUpdate,
+  handleOpenModalDelete
 }) => {
   return (
     <Box
@@ -16,7 +17,7 @@ export const OptionsButtons = ({
       }}
     >
       <Button
-        onClick={() => handleDelete(id)}
+        onClick={() => handleOpenModalDelete(id)}
         sx={{ width: "20%" }}
         variant="contained"
         color="error"

@@ -1,113 +1,129 @@
 import { useEffect, useState } from "react";
 import { getAllUsers } from "../api/getAllUsers";
 import axios from "axios";
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuidv4 } from "uuid";
 
-let defaultUser = {id:null, name:"", email:"",email:"",username:"",website:""}
+let defaultUser = {
+  id: null,
+  name: "",
+  email: "",
+  email: "",
+  username: "",
+  website: "",
+};
 
 export const useUsers = () => {
 
-    const [open, setOpen] = useState(false);
+   const [open, setOpen] = useState(false);
 
-    const [openModalView, setOpenModalView] = useState(false);
+   const [openModalView, setOpenModalView] = useState(false);
 
-    const [newUser, setNewUser] = useState(defaultUser);
+  const [newUser, setNewUser] = useState(defaultUser);
 
-    const [specificUser, setSpecificUser] = useState({})
+  const [specificUser, setSpecificUser] = useState({});
 
-    const [users, setUsers] = useState([]);
+  const [users, setUsers] = useState([]);
 
-    const [updateUser, setUpdateUser] = useState(null)
+  const [updateUser, setUpdateUser] = useState(null);
 
-    const getUsers = async () => {
-        const allUsers = await getAllUsers();
-        setUsers(allUsers);
+  const getUsers = async () => {
+    const allUsers = await getAllUsers();
+    setUsers(allUsers);
+  };
+
+  useEffect(() => {
+    getUsers();
+  }, [users]);
+
+  const handleOpen = () => {
+      setOpen(true)
+  };
+
+  const [openModalDelete, setOpenModalDelete] = useState(false);
+
+  const handleOpenModalDelete = (id) => {
+      setOpenModalDelete(true);
+      setUpdateUser(id)
+  }
+
+  const handleCloseModalDelete = () => setOpenModalDelete(false);
+
+  const handleClose = () => {
+      setOpen(false);
+      setNewUser(defaultUser)
+  };
+
+  const handleOpenModalView = () => {
+      setOpenModalView(true);
     };
 
-    useEffect(() => {
-        getUsers();
-    }, [users]);
-    
-    const handleOpen = () => {
-        setOpen(true)
-    };
+  const handleCloseModalView = () => {
+      setOpenModalView(false);
+  };
 
-    const handleClose = () => {
-        setOpen(false);
-        setNewUser(defaultUser)
-    };
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setNewUser({
+      ...newUser,
+      [name]: value,
+    });
+  };
 
-    const handleOpenModalView = () => {
-        setOpenModalView(true);
-      };
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    setNewUser({ ...newUser, id: uuidv4() });
+    const url = "https://fake-api-spartan.herokuapp.com/users";
+    axios.post(url, newUser);
+    handleClose();
+    setNewUser(defaultUser);
+  };
 
-    const handleCloseModalView = () => {
-        setOpenModalView(false);
-    };
+  const handleDelete = (id) => {
+    axios.delete(`https://fake-api-spartan.herokuapp.com/users/${id}`);
+    handleCloseModalDelete();
+  };
 
-    const handleChange = (event) => {
-        const { name, value } = event.target;
-        setNewUser({
-            ...newUser,
-            [name]: value,
-        });
-    };
-    
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        setNewUser({...newUser, id: uuidv4()})
-        const url = "https://fake-api-spartan.herokuapp.com/users"
-        axios.post(url, newUser)
-        handleClose()
-        setNewUser(defaultUser)
-    };
-    
-    const handleDelete = (id) =>{
-        axios.delete(`https://fake-api-spartan.herokuapp.com/users/${id}`)
-    }
-    
-    const handleUpdate = (id) =>{
-        let usuario = users.find((user) => user.id === id)
-        setNewUser(usuario)
-        setUpdateUser(id)
-        handleOpen()
-    }
+  const handleUpdate = (id) => {
+    console.log("id", id);
+    let usuario = users.find((user) => user.id === id);
+    setNewUser(usuario);
+    setUpdateUser(id);
+    handleOpen();
+  };
 
-    const handleAddUpdate = (id) =>{
-        axios.put(`https://fake-api-spartan.herokuapp.com/users/${id}`, newUser)
-        handleClose()
-        setNewUser(defaultUser)
-    }
+  const handleAddUpdate = (id) => {
+    axios.put(`https://fake-api-spartan.herokuapp.com/users/${id}`, newUser);
+    handleClose();
+    setNewUser(defaultUser);
+  };
 
-    const getUsersDetails = async(id) =>{
-        const url = `https://fake-api-spartan.herokuapp.com/users/${id}`
-        let {data} = await axios.get(url)
-        setSpecificUser(data)
-        handleOpenModalView() 
-    }
+  const getUsersDetails = async (id) => {
+    const url = `https://fake-api-spartan.herokuapp.com/users/${id}`;
+    const { data } = await axios.get(url);
+    setSpecificUser(data);
+    handleOpenModalView();
+  };
 
-    useEffect(() => {
-      getUsersDetails()
-    }, [specificUser])
-    
-
-    return{
-        handleChange,
-        handleSubmit,
-        open,
-        handleClose,
-        handleOpen,
-        newUser,
-        handleDelete,
-        openModalView,
-        handleOpenModalView,
-        handleCloseModalView,
-        getUsersDetails,
-        users,
-        specificUser,
-        handleUpdate,
-        newUser,
-        updateUser,
-        handleAddUpdate
-    } 
+  return {
+    handleChange,
+    handleSubmit,
+    open,
+    handleClose,
+    handleOpen,
+    newUser,
+    handleDelete,
+    openModalView,
+    handleOpenModalView,
+    handleCloseModalView,
+    getUsersDetails,
+    users,
+    specificUser,
+    handleUpdate,
+    newUser,
+    updateUser,
+    handleAddUpdate,
+    openModalDelete,
+    handleOpenModalDelete,
+    handleCloseModalDelete,
+  };
 };

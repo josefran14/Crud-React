@@ -26,7 +26,9 @@ export const FormModal = ({
 }) => {
   return (
     <>
-      <Button onClick={handleOpen}>Add User</Button>
+      <Box sx={{width: "89%", display: "flex", justifyContent: "flex-end"}}>
+        <Button onClick={handleOpen}>Add User</Button>
+      </Box>
       <Modal
         open={open}
         onClose={handleClose}

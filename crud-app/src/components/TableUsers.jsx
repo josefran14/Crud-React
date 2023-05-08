@@ -12,7 +12,8 @@ export const TableUsers = ({
   users,
   handleDelete,
   getUsersDetails,
-  handleUpdate
+  handleUpdate,
+  handleOpenModalDelete
 }) => {
   return (
     <>
@@ -52,6 +53,7 @@ export const TableUsers = ({
                       handleDelete={handleDelete}
                       getUsersDetails={getUsersDetails}
                       handleUpdate={handleUpdate}
+                      handleOpenModalDelete={handleOpenModalDelete}
                     />
                   </TableCell>
                 </TableRow>

@@ -1,5 +1,6 @@
-import { Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import { useUsers } from "../hooks/useUsers";
+import { DeleteModal } from "./DeleteModal";
 import { FormModal } from "./FormModal";
 import { TableUsers } from "./TableUsers";
 import { UserModal } from "./UserModal";
@@ -20,7 +21,10 @@ export const CrudApp = () => {
     specificUser,
     handleUpdate,
     updateUser,
-    handleAddUpdate
+    handleAddUpdate,
+    openModalDelete,
+    handleOpenModalDelete,
+    handleCloseModalDelete,
   } = useUsers();
 
   /* const [users, setUsers] = useState([]);
@@ -36,7 +40,9 @@ export const CrudApp = () => {
 
   return (
     <>
-      <Typography variant="h4">CrudApp</Typography>
+      <Box sx={{ display: "flex", justifyContent: "center" }}>
+        <Typography variant="h4">CrudApp</Typography>
+      </Box>
       <FormModal
         handleChange={handleChange}
         handleSubmit={handleSubmit}
@@ -55,9 +61,16 @@ export const CrudApp = () => {
       />
       <TableUsers
         users={users}
-        handleDelete={handleDelete}
         getUsersDetails={getUsersDetails}
         handleUpdate={handleUpdate}
+        handleOpenModalDelete={handleOpenModalDelete}
+      />
+      <DeleteModal
+        handleDelete={handleDelete}
+        openModalDelete={openModalDelete}
+        handleCloseModalDelete={handleCloseModalDelete}
+        updateUser={updateUser}
+        specificUser={specificUser}
       />
     </>
   );

@@ -15,6 +15,7 @@ import { Stack, Typography } from "@mui/material";
  };
 
 export const UserModal = ({openModalView,handleCloseModalView,specificUser,}) => {
+
   return (
     <>
       <Modal
