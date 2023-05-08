@@ -18,6 +18,9 @@ export const CrudApp = () => {
     getUsersDetails,
     users,
     specificUser,
+    handleUpdate,
+    updateUser,
+    handleAddUpdate
   } = useUsers();
 
   /* const [users, setUsers] = useState([]);
@@ -41,6 +44,9 @@ export const CrudApp = () => {
         handleOpen={handleOpen}
         open={open}
         newUser={newUser}
+        handleUpdate={handleUpdate}
+        updateUser={updateUser}
+        handleAddUpdate={handleAddUpdate}
       />
       <UserModal
         openModalView={openModalView}
@@ -51,6 +57,7 @@ export const CrudApp = () => {
         users={users}
         handleDelete={handleDelete}
         getUsersDetails={getUsersDetails}
+        handleUpdate={handleUpdate}
       />
     </>
   );

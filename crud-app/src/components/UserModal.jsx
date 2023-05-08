@@ -1,25 +1,20 @@
-import Box from '@mui/material/Box';
-import Modal from '@mui/material/Modal';
-import Button from '@mui/material/Button';
+import Box from "@mui/material/Box";
+import Modal from "@mui/material/Modal";
+import Button from "@mui/material/Button";
 import CloseIcon from "@mui/icons-material/Close";
-import { Typography } from '@mui/material';
+import { Stack, Typography } from "@mui/material";
 
-const style = {
+ const style = {
+  width: "40%",
+  bgcolor: "background.paper",
+  border: "2px solid #000",
+  transform: "translate(-50%, -50%)",
   position: 'absolute',
   top: '50%',
   left: '50%',
-  transform: 'translate(-50%, -50%)',
-  width: 400,
-  bgcolor: 'background.paper',
-  border: '2px solid #000',
-  boxShadow: 24,
-  pt: 2,
-  px: 4,
-  pb: 3,
-};
+ };
 
-export const UserModal = ({openModalView, handleCloseModalView, specificUser}) => {
-
+export const UserModal = ({openModalView,handleCloseModalView,specificUser,}) => {
   return (
     <>
       <Modal
@@ -28,24 +23,48 @@ export const UserModal = ({openModalView, handleCloseModalView, specificUser}) =
         aria-labelledby="child-modal-title"
         aria-describedby="child-modal-description"
       >
-        <Box sx={{ ...style, width: 200 }}>
-        <Button onClick={handleCloseModalView}>
-              {" "}
-              <CloseIcon />{" "}
+        <Box
+          sx={{...style}}
+        >
+          <Box
+            sx={{
+              width: "100%",
+              display: "flex",
+              justifyContent: "flex-end",
+              alignItems: "center",
+              maxHeight: "5%"
+            }}
+          >
+            <Button onClick={handleCloseModalView}>
+              <CloseIcon />
             </Button>
-          {
-            specificUser.map((user) =>(
-                <Box key={user.id}>
-                    <Typography>{user.name}</Typography>
-                    <Typography>{user.email}</Typography>
-                    <Typography>{user.city}</Typography>
-                    <Typography>{user.username}</Typography>
-                    <Typography>{user.website}</Typography>
-                </Box>
-            ))
-          }
+          </Box>
+          <Stack sx={{display:"flex", alignItems: "center", marginBottom: "20px"}}>
+            <Stack sx={{width: "60%", gap: "6px"}}>
+            <Box sx={{ display: "flex", gap: "10px" }}>
+              <Typography sx={{ fontWeight: "bold" }}>Name:</Typography>
+              <Typography sx={{ gap: "10px" }}>{specificUser.name}</Typography>
+            </Box>
+            <Box sx={{ display: "flex", gap: "10px" }}>
+              <Typography sx={{ fontWeight: "bold" }}>Genero:</Typography>
+              <Typography>{specificUser.city}</Typography>
+            </Box>
+            <Box sx={{ display: "flex", gap: "10px" }}>
+              <Typography sx={{ fontWeight: "bold" }}>Email:</Typography>{" "}
+              <Typography>{specificUser.email}</Typography>
+            </Box>
+            <Box sx={{ display: "flex", gap: "10px" }}>
+              <Typography sx={{ fontWeight: "bold" }}>Username:</Typography>{" "}
+              <Typography>{specificUser.username}</Typography>
+            </Box>
+            <Box sx={{ display: "flex", gap: "10px" }}>
+              <Typography sx={{ fontWeight: "bold" }}>Website:</Typography>{" "}
+              <Typography>{specificUser.website}</Typography>
+            </Box>
+            </Stack>
+          </Stack>
         </Box>
       </Modal>
     </>
-  )
-}
+  );
+};

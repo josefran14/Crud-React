@@ -11,7 +11,8 @@ import { OptionsButtons } from "./OptionsButtons";
 export const TableUsers = ({
   users,
   handleDelete,
-  getUsersDetails
+  getUsersDetails,
+  handleUpdate
 }) => {
   return (
     <>
@@ -50,6 +51,7 @@ export const TableUsers = ({
                       id={id}
                       handleDelete={handleDelete}
                       getUsersDetails={getUsersDetails}
+                      handleUpdate={handleUpdate}
                     />
                   </TableCell>
                 </TableRow>

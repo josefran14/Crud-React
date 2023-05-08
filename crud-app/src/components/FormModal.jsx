@@ -1,4 +1,4 @@
-import { Box, Button, Modal, TextField, Typography } from "@mui/material";
+import { Box, Button, Modal, TextField } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 
 const style = {
@@ -10,11 +10,20 @@ const style = {
   bgcolor: "background.paper",
   border: "2px solid #000",
   boxShadow: 24,
-  p: 4,
+  p: 1,
+  pb: 3,
 };
 
-export const FormModal = ({handleOpen, open, handleClose, handleChange, handleSubmit, newUser}) => {
-
+export const FormModal = ({
+  handleOpen,
+  open,
+  handleClose,
+  handleChange,
+  handleSubmit,
+  handleAddUpdate,
+  newUser,
+  updateUser,
+}) => {
   return (
     <>
       <Button onClick={handleOpen}>Add User</Button>
@@ -26,11 +35,15 @@ export const FormModal = ({handleOpen, open, handleClose, handleChange, handleSu
       >
         <Box sx={style}>
           <Box
-            sx={{ width: "100%", display: "flex", justifyContent: "flex-end" }}
+            sx={{
+              width: "100%",
+              display: "flex",
+              justifyContent: "flex-end",
+              alignItems: "center",
+            }}
           >
             <Button onClick={handleClose}>
-              {" "}
-              <CloseIcon />{" "}
+              <CloseIcon />
             </Button>
           </Box>
           <form onSubmit={handleSubmit}>
@@ -41,11 +54,13 @@ export const FormModal = ({handleOpen, open, handleClose, handleChange, handleSu
                 flexDirection: "column",
                 alignItems: "center",
                 gap: "15px",
+                paddingTop: "0px",
               }}
             >
               <TextField
                 sx={{ width: "70%" }}
                 onChange={handleChange}
+                value={newUser.name}
                 name="name"
                 type="text"
                 placeholder="Ingrese su nombre"
@@ -53,6 +68,7 @@ export const FormModal = ({handleOpen, open, handleClose, handleChange, handleSu
               <TextField
                 sx={{ width: "70%" }}
                 onChange={handleChange}
+                value={newUser.email}
                 name="email"
                 type="email"
                 placeholder="Ingrese su Email"
@@ -60,6 +76,7 @@ export const FormModal = ({handleOpen, open, handleClose, handleChange, handleSu
               <TextField
                 sx={{ width: "70%" }}
                 onChange={handleChange}
+                value={newUser.city}
                 name="city"
                 type="text"
                 placeholder="Genero"
@@ -67,6 +84,7 @@ export const FormModal = ({handleOpen, open, handleClose, handleChange, handleSu
               <TextField
                 sx={{ width: "70%" }}
                 onChange={handleChange}
+                value={newUser.username}
                 name="username"
                 type="text"
                 placeholder="Username"
@@ -74,13 +92,28 @@ export const FormModal = ({handleOpen, open, handleClose, handleChange, handleSu
               <TextField
                 sx={{ width: "70%" }}
                 onChange={handleChange}
+                value={newUser.website}
                 name="website"
                 type="text"
                 placeholder="Website"
               />
-              <Button onClick={handleSubmit} variant="contained" color="primary">
-                Add
-              </Button>
+              {newUser.id === null ? (
+                <Button
+                  onClick={handleSubmit}
+                  variant="contained"
+                  color="primary"
+                >
+                  Add
+                </Button>
+              ) : (
+                <Button
+                  onClick={() => handleAddUpdate(updateUser)}
+                  variant="contained"
+                  color="primary"
+                >
+                  Update
+                </Button>
+              )}
             </Box>
           </form>
         </Box>
