@@ -21,10 +21,10 @@ export const CrudApp = () => {
     specificUser,
     handleUpdate,
     updateUser,
-    handleAddUpdate,
     openModalDelete,
     handleOpenModalDelete,
     handleCloseModalDelete,
+    handleAddUpdate
   } = useUsers();
 
   /* const [users, setUsers] = useState([]);

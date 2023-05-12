@@ -7,7 +7,7 @@ let defaultUser = {
   id: null,
   name: "",
   email: "",
-  email: "",
+  city: "",
   username: "",
   website: "",
 };
@@ -84,7 +84,6 @@ export const useUsers = () => {
   };
 
   const handleUpdate = (id) => {
-    console.log("id", id);
     let usuario = users.find((user) => user.id === id);
     setNewUser(usuario);
     setUpdateUser(id);

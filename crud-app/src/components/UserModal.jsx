@@ -47,7 +47,7 @@ export const UserModal = ({openModalView,handleCloseModalView,specificUser,}) =>
               <Typography sx={{ gap: "10px" }}>{specificUser.name}</Typography>
             </Box>
             <Box sx={{ display: "flex", gap: "10px" }}>
-              <Typography sx={{ fontWeight: "bold" }}>Genero:</Typography>
+              <Typography sx={{ fontWeight: "bold" }}>Gender:</Typography>
               <Typography>{specificUser.city}</Typography>
             </Box>
             <Box sx={{ display: "flex", gap: "10px" }}>
