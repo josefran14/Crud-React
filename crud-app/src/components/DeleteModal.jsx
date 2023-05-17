@@ -8,6 +8,7 @@ export const DeleteModal = ({
   updateUser,
   openModalDelete,
   handleCloseModalDelete,
+  darkStyle
 }) => {
   
   const style = {
@@ -31,7 +32,7 @@ export const DeleteModal = ({
           aria-labelledby="modal-modal-title"
           aria-describedby="modal-modal-description"
         >
-          <Box sx={style}>
+          <Box sx={{...style, ...darkStyle}}>
             <Box
               sx={{
                 display: "flex",

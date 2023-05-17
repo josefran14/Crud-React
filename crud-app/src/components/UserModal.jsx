@@ -14,7 +14,7 @@ import { Stack, Typography } from "@mui/material";
   left: '50%',
  };
 
-export const UserModal = ({openModalView,handleCloseModalView,specificUser,}) => {
+export const UserModal = ({openModalView,handleCloseModalView,specificUser,darkStyle}) => {
 
   return (
     <>
@@ -25,7 +25,7 @@ export const UserModal = ({openModalView,handleCloseModalView,specificUser,}) =>
         aria-describedby="child-modal-description"
       >
         <Box
-          sx={{...style}}
+          sx={{...style, ...darkStyle}}
         >
           <Box
             sx={{

@@ -1,9 +1,13 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Stack, Typography } from "@mui/material";
+import { useModeDark } from "../hooks/useModeDark";
 import { useUsers } from "../hooks/useUsers";
+import { ButtonDarkMode } from "./ButtonDarkMode";
 import { DeleteModal } from "./DeleteModal";
 import { FormModal } from "./FormModal";
 import { TableUsers } from "./TableUsers";
 import { UserModal } from "./UserModal";
+import logo from "../assets/reactjs.svg";
+import logo2 from "../assets/react-2.svg";
 
 export const CrudApp = () => {
   const {
@@ -24,24 +28,35 @@ export const CrudApp = () => {
     openModalDelete,
     handleOpenModalDelete,
     handleCloseModalDelete,
-    handleAddUpdate
+    handleAddUpdate,
   } = useUsers();
 
-  /* const [users, setUsers] = useState([]);
+  const { darkMode, darkStyle, handleDarkMode, borderDarkStyle } =
+    useModeDark();
 
-  const getUsers = async () => {
-    const allUsers = await getAllUsers();
-    setUsers(allUsers);
-  };
+  const date = new Date();
 
-  useEffect(() => {
-    getUsers();
-  }, [users]); */
+  const currentYear = date.getFullYear();
 
   return (
-    <>
-      <Box sx={{ display: "flex", justifyContent: "center" }}>
+    <Box sx={{ ...darkStyle, minHeight: "100vh", minWidth: "100vw" }}>
+      <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+          <Stack
+            direction="row"
+            justifyContent="center"
+            alignItems="center"
+          >
+            <img src={logo} width="60px" height="40px" />
+              <Typography sx={{ ...darkStyle, fontWeight: "700" }}>
+                ® {currentYear}
+              </Typography>
+          </Stack>
         <Typography variant="h4">CrudApp</Typography>
+        <ButtonDarkMode
+          darkMode={darkMode}
+          darkStyle={darkStyle}
+          handleDarkMode={handleDarkMode}
+        />
       </Box>
       <FormModal
         handleChange={handleChange}
@@ -53,17 +68,21 @@ export const CrudApp = () => {
         handleUpdate={handleUpdate}
         updateUser={updateUser}
         handleAddUpdate={handleAddUpdate}
+        darkStyle={darkStyle}
+        borderDarkStyle={borderDarkStyle}
       />
       <UserModal
         openModalView={openModalView}
         handleCloseModalView={handleCloseModalView}
         specificUser={specificUser}
+        darkStyle={darkStyle}
       />
       <TableUsers
         users={users}
         getUsersDetails={getUsersDetails}
         handleUpdate={handleUpdate}
         handleOpenModalDelete={handleOpenModalDelete}
+        darkStyle={darkStyle}
       />
       <DeleteModal
         handleDelete={handleDelete}
@@ -71,7 +90,8 @@ export const CrudApp = () => {
         handleCloseModalDelete={handleCloseModalDelete}
         updateUser={updateUser}
         specificUser={specificUser}
+        darkStyle={darkStyle}
       />
-    </>
+    </Box>
   );
 };

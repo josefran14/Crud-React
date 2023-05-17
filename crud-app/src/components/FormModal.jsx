@@ -23,6 +23,8 @@ export const FormModal = ({
   handleAddUpdate,
   newUser,
   updateUser,
+  darkStyle,
+  borderDarkStyle
 }) => {
   return (
     <>
@@ -35,7 +37,7 @@ export const FormModal = ({
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Box sx={style}>
+        <Box sx={{...style, ...darkStyle}}>
           <Box
             sx={{
               width: "100%",
@@ -60,7 +62,7 @@ export const FormModal = ({
               }}
             >
               <TextField
-                sx={{ width: "70%" }}
+                sx={{ width: "70%", ...borderDarkStyle }}
                 onChange={handleChange}
                 value={newUser.name}
                 name="name"
@@ -68,7 +70,7 @@ export const FormModal = ({
                 placeholder="Ingrese su nombre"
               />
               <TextField
-                sx={{ width: "70%" }}
+                sx={{ width: "70%", ...borderDarkStyle }}
                 onChange={handleChange}
                 value={newUser.email}
                 name="email"
@@ -76,7 +78,7 @@ export const FormModal = ({
                 placeholder="Ingrese su Email"
               />
               <TextField
-                sx={{ width: "70%" }}
+                sx={{ width: "70%", ...borderDarkStyle }}
                 onChange={handleChange}
                 value={newUser.city}
                 name="city"
@@ -84,7 +86,7 @@ export const FormModal = ({
                 placeholder="Genero"
               />
               <TextField
-                sx={{ width: "70%" }}
+                sx={{ width: "70%", ...borderDarkStyle }}
                 onChange={handleChange}
                 value={newUser.username}
                 name="username"
@@ -92,7 +94,7 @@ export const FormModal = ({
                 placeholder="Username"
               />
               <TextField
-                sx={{ width: "70%" }}
+                sx={{ width: "70%", ...borderDarkStyle }}
                 onChange={handleChange}
                 value={newUser.website}
                 name="website"
